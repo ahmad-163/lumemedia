@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LUMÉ MEDIA — Creative Media & Marketing for Growing Brands</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Tailwind Play CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              navy: {
+                950: '#04102C',
+                800: '#0A1B3D',
+                600: '#1C2E57',
+              },
+              cream: {
+                50: '#FAF6EC',
+                200: '#EFE6D0',
+              },
+              amber: {
+                DEFAULT: '#FF9A2E',
+                dim: '#B36A1E',
+              },
+            },
+            fontFamily: {
+              display: ['"Bodoni Moda"', 'serif'],
+              sans: ['"Inter"', 'sans-serif'],
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="bg-navy-950 text-cream-50 font-sans selection:bg-amber selection:text-navy-950 overflow-x-hidden antialiased">
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
