@@ -3,44 +3,71 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>LUMÉ MEDIA — Creative Media & Marketing for Growing Brands</title>
+    <title>LUMÉ MEDIA — Design. Edit. Market.</title>
+    <meta name="description" content="Lumé Media transforms ideas into presence — delivering premium, purpose-driven content that empowers startups with clarity, confidence, and creative direction." />
     
-    <!-- Google Fonts -->
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/lumemedialogo.png" />
+
+    <!-- Google Fonts: IBM Plex Mono, Inter, Syne -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700;800;900&family=Syne:wght@700;800&display=swap" rel="stylesheet">
 
-    <!-- Tailwind Play CDN -->
+    <!-- Tailwind Play CDN configuration -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
         theme: {
           extend: {
             colors: {
-              navy: {
-                950: '#04102C',
-                800: '#0A1B3D',
-                600: '#1C2E57',
+              platinum: {
+                DEFAULT: '#F1F4F8',
+                50: '#FFFFFF',
+                100: '#F1F4F8',
+                200: '#E2E8F0',
+                300: '#CBD5E1',
               },
-              cream: {
-                50: '#FAF6EC',
-                200: '#EFE6D0',
+              midnight: {
+                DEFAULT: '#191970',
+                dark: '#101254',
+                light: '#2A2AA3',
               },
-              amber: {
-                DEFAULT: '#FF9A2E',
-                dim: '#B36A1E',
+              ink: {
+                DEFAULT: '#101828',
+                muted: '#344054',
+                light: '#475467',
               },
+              prussian: {
+                DEFAULT: '#0D1B3E',
+                light: '#162854',
+              },
+              deepnavy: {
+                DEFAULT: '#101B4D',
+                light: '#1B2A70',
+              },
+              signal: {
+                DEFAULT: '#191970',
+                dim: '#0D1B3E',
+                bright: '#2525A8',
+              }
             },
             fontFamily: {
-              display: ['"Bodoni Moda"', 'serif'],
-              sans: ['"Inter"', 'sans-serif'],
+              display: ['"Syne"', '"Inter"', 'sans-serif'],
+              sans: ['"Inter"', 'system-ui', 'sans-serif'],
+              mono: ['"IBM Plex Mono"', 'monospace'],
             },
+            boxShadow: {
+              'brutal-midnight': '4px 4px 0px 0px #191970',
+              'brutal-ink': '4px 4px 0px 0px #101828',
+              'brutal-platinum': '4px 4px 0px 0px #F1F4F8',
+            }
           },
         },
       };
     </script>
   </head>
-  <body class="bg-navy-950 text-cream-50 font-sans selection:bg-amber selection:text-navy-950 overflow-x-hidden antialiased">
+  <body class="bg-[#F1F4F8] text-[#101828] font-sans selection:bg-[#191970] selection:text-white overflow-x-hidden antialiased">
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

@@ -1,77 +1,192 @@
 import React from 'react';
-import SectionHeading from '../components/SectionHeading';
-import WhyLume from '../sections/WhyLume';
-import { Quote, HeartHandshake, Target, Globe2 } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import SlateLabel from '../components/SlateLabel';
 
 export default function Story() {
   return (
-    <div className="pt-32 pb-24 bg-navy-950 text-cream-50 min-h-screen">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
-        <SectionHeading
-          eyebrow="OUR STORY & MISSION"
-          headline="Shaping Stories That Travel Beyond Screens."
-          subhead="Lumé Media was founded to give ambitious startups and growing brands agency-grade creative direction without excessive agency overhead."
-        />
+    <main className="min-h-screen bg-[#F1F4F8] text-[#101828] pt-20 pb-24">
+      {/* Header */}
+      <section className="px-4 md:px-12 py-12 border-b border-[#191970]/15 max-w-5xl mx-auto">
+        <SlateLabel scene="STORY" roll="DOC" take="01" label="THE LUMÉ MANIFESTO" />
+        <h1 className="font-display text-4xl sm:text-6xl md:text-7xl uppercase tracking-tighter text-[#101828] mt-6">
+          ABOUT <span className="text-[#191970]">LUMÉ MEDIA</span>
+        </h1>
+        <p className="font-mono text-xs uppercase tracking-widest text-[#101828]/60 mt-3">
+          LAHORE, PAKISTAN (HQ) // GULF &amp; DUBAI (EXPANSION MARKET)
+        </p>
+      </section>
 
-        {/* Mission Quote */}
-        <div className="bg-navy-800 border-l-4 border-amber border-y border-r border-navy-600 p-8 sm:p-12 rounded-r-2xl shadow-2xl space-y-4">
-          <Quote className="w-10 h-10 text-amber" />
-          <blockquote className="font-display text-2xl sm:text-3xl font-medium text-cream-50 italic leading-relaxed">
-            "To illuminate emerging brands by shaping stories that travel beyond screens, build trust, and leave a lasting imprint in an ever-evolving marketplace."
-          </blockquote>
-          <div className="text-xs font-bold uppercase tracking-[0.14em] text-amber pt-2">
-            — Lumé Media Mission
+      {/* 1. Mission Quote */}
+      <section className="px-4 md:px-12 py-12 max-w-5xl mx-auto border-b border-[#191970]/15">
+        <div className="font-mono text-xs text-[#191970] font-bold uppercase tracking-widest mb-4">
+          OUR MISSION
+        </div>
+        <blockquote className="font-display text-2xl sm:text-4xl text-[#101828] uppercase tracking-tight leading-tight border-l-4 border-[#191970] pl-6 py-2">
+          "To illuminate emerging brands by shaping stories that travel beyond screens, build trust, and leave a lasting imprint in an ever-evolving marketplace."
+        </blockquote>
+      </section>
+
+      {/* 2. Who We Are */}
+      <section className="px-4 md:px-12 py-12 max-w-5xl mx-auto border-b border-[#191970]/15">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+          <div className="md:col-span-4 font-mono text-xs text-[#191970] font-bold uppercase tracking-widest">
+            WHO WE ARE
+          </div>
+          <div className="md:col-span-8 font-sans text-base md:text-lg text-[#101828]/90 leading-relaxed space-y-4">
+            <p>
+              Lumé Media transforms ideas into presence — delivering premium, purpose-driven content that empowers startups with clarity, confidence, and creative direction, without the barrier of excessive costs.
+            </p>
+            <p className="text-[#101828]/70 text-sm">
+              We were founded to eliminate the friction between high-level creative vision and realistic startup budgets. Operating as an agile production studio, we combine strategy, cinematic video editing, custom brand identity design, and social media execution into a single unified workspace.
+            </p>
           </div>
         </div>
+      </section>
 
-        {/* Who We Are */}
-        <div className="bg-navy-800 border border-navy-600 p-8 sm:p-10 rounded-2xl space-y-4 shadow-xl">
-          <div className="text-xs font-bold uppercase tracking-[0.14em] text-amber">
-            Who We Are
-          </div>
-          <p className="text-base sm:text-lg text-cream-200/90 leading-relaxed font-sans font-normal">
-            Lumé Media is a creative media and marketing house built for startups and early-stage businesses. We believe great branding shouldn't be reserved for companies with big budgets — so we deliver premium-quality content, strategy, and creative direction at prices that make sense for growing brands. Based in Lahore and working with clients locally and internationally, we help founders turn their ideas into a confident, consistent brand presence — without the cost or complexity of a traditional agency.
-          </p>
+      {/* 3. Why Lumé Media (Stacked Mono List) */}
+      <section className="px-4 md:px-12 py-12 max-w-5xl mx-auto border-b border-[#191970]/15">
+        <div className="font-mono text-xs text-[#191970] font-bold uppercase tracking-widest mb-8">
+          WHY LUMÉ MEDIA // THREE CORE PILLARS
         </div>
 
-        {/* Our Impact So Far */}
-        <div className="bg-navy-800 border border-navy-600 p-8 sm:p-10 rounded-2xl space-y-4 shadow-xl">
-          <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.14em] text-amber">
-            <HeartHandshake className="w-4 h-4" />
-            <span>Our Impact So Far</span>
+        <div className="space-y-6">
+          {/* Point 1 */}
+          <div className="p-6 bg-white border border-[#191970]/20 rounded-lg shadow-sm space-y-2">
+            <div className="font-mono text-xs text-[#191970] font-bold uppercase tracking-widest">
+              01 // BUILT FOR STARTUPS
+            </div>
+            <h3 className="font-display text-xl uppercase tracking-tight text-[#101828]">
+              High-End Execution Without Enterprise Overhead
+            </h3>
+            <p className="font-sans text-sm text-[#101828]/80 leading-relaxed">
+              Startups don't need inflated agency retainer fees; they need fast, impactful assets that generate immediate brand authority. We deliver top-tier editorial aesthetics tailored specifically for growing businesses.
+            </p>
           </div>
-          <p className="text-base sm:text-lg text-cream-200/90 leading-relaxed font-sans font-normal">
-            We've had the opportunity to work with brands like Padel Play and Turja Travels, helping them build their content, visuals, and online presence. Lumé Media is also proud to partner with <strong className="text-cream-50 font-semibold">Al Khidmat Foundation</strong>, supporting community youth engagement initiatives — reflecting our commitment to giving back as we grow. We're actively building our portfolio of startup partnerships, with a goal of becoming a trusted, long-term creative partner across the startup ecosystem — and, over time, expanding our reach into new international markets.
-          </p>
-        </div>
 
-        {/* Who We Serve */}
-        <div className="bg-navy-800 border border-navy-600 p-8 sm:p-10 rounded-2xl space-y-4 shadow-xl">
-          <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.14em] text-amber">
-            <Target className="w-4 h-4" />
-            <span>Who We Serve</span>
+          {/* Point 2 */}
+          <div className="p-6 bg-white border border-[#191970]/20 rounded-lg shadow-sm space-y-2">
+            <div className="font-mono text-xs text-[#191970] font-bold uppercase tracking-widest">
+              02 // ALL-IN-ONE CREATIVE PARTNER
+            </div>
+            <h3 className="font-display text-xl uppercase tracking-tight text-[#101828]">
+              Strategy, Design, Edit, and Distribution in One Hub
+            </h3>
+            <p className="font-sans text-sm text-[#101828]/80 leading-relaxed">
+              No more juggling separate copywriters, freelance editors, and graphic designers. Lumé Media manages the complete production pipeline under one roof, guaranteeing visual coherence across every touchpoint.
+            </p>
           </div>
-          <p className="text-base sm:text-lg text-cream-200/90 leading-relaxed font-sans font-normal">
-            We work with startups and early-stage businesses that understand the value of strong branding but need a partner who can deliver high-impact creative work within a realistic budget. If you're building something new and want your brand to look and feel as ambitious as your vision, Lumé Media is built for you.
-          </p>
-        </div>
 
-        {/* Growth Market Note */}
-        <div className="bg-navy-950 border-2 border-amber/40 p-6 sm:p-8 rounded-2xl text-center space-y-3">
-          <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.14em] text-amber">
-            <Globe2 className="w-4 h-4" />
-            <span>Geographic Presence & Expansion</span>
-          </div>
-          <div className="text-sm sm:text-base text-cream-50 font-medium">
-            Primary Base: <strong>Lahore, Pakistan</strong> &nbsp;•&nbsp; Growth Market: <strong>Gulf & Dubai Region</strong>
+          {/* Point 3 */}
+          <div className="p-6 bg-white border border-[#191970]/20 rounded-lg shadow-sm space-y-2">
+            <div className="font-mono text-xs text-[#191970] font-bold uppercase tracking-widest">
+              03 // PERSONALIZED &amp; AGILE
+            </div>
+            <h3 className="font-display text-xl uppercase tracking-tight text-[#101828]">
+              Direct Founder Access &amp; Rapid Turnaround Cycles
+            </h3>
+            <p className="font-sans text-sm text-[#101828]/80 leading-relaxed">
+              You work directly with the creative leaders executing your campaign. No account manager layers, no miscommunicated briefs — just direct communication and rapid execution.
+            </p>
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* Why Lumé Section Recap */}
-      <div className="mt-20">
-        <WhyLume />
-      </div>
-    </div>
+      {/* 4. Our Impact & Community Partner */}
+      <section className="px-4 md:px-12 py-12 max-w-5xl mx-auto border-b border-[#191970]/15">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+          <div className="md:col-span-4 font-mono text-xs text-[#191970] font-bold uppercase tracking-widest">
+            IMPACT &amp; SOCIAL RESPONSIBILITY
+          </div>
+          <div className="md:col-span-8 space-y-4">
+            <div className="p-6 bg-[#0D1B3E] text-white rounded-lg border border-[#191970]">
+              <h3 className="font-display text-xl uppercase tracking-tight text-white mb-2">
+                COMMUNITY IMPACT PARTNER
+              </h3>
+              <p className="font-sans text-sm text-white/80 leading-relaxed">
+                Beyond commercial work, Lumé Media actively partners with non-profit advocacy groups including <strong className="text-emerald-400">Al Khidmat Foundation</strong> and <strong className="text-emerald-400">Empower Through Literacy</strong> to craft documentary short-form stories that amplify social causes and community awareness.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 5. Who We Serve */}
+      <section className="px-4 md:px-12 py-12 max-w-5xl mx-auto border-b border-[#191970]/15">
+        <div className="font-mono text-xs text-[#191970] font-bold uppercase tracking-widest mb-6">
+          WHO WE SERVE
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 font-mono text-xs text-[#101828]">
+          <div className="p-4 bg-white border border-[#191970]/20 rounded">
+            <span className="text-[#191970] font-bold block mb-1">01 /</span>
+            <span>Early-Stage Startups</span>
+          </div>
+          <div className="p-4 bg-white border border-[#191970]/20 rounded">
+            <span className="text-[#191970] font-bold block mb-1">02 /</span>
+            <span>Sports &amp; Fitness Facilities</span>
+          </div>
+          <div className="p-4 bg-white border border-[#191970]/20 rounded">
+            <span className="text-[#191970] font-bold block mb-1">03 /</span>
+            <span>Travel &amp; Luxury Consultancies</span>
+          </div>
+          <div className="p-4 bg-white border border-[#191970]/20 rounded">
+            <span className="text-[#191970] font-bold block mb-1">04 /</span>
+            <span>F&amp;B &amp; Tech Retailers</span>
+          </div>
+        </div>
+      </section>
+
+      {/* 6. Founder Editorial Profile Section */}
+      <section id="founder" className="px-4 md:px-12 py-16 max-w-5xl mx-auto">
+        <div className="bg-[#0D1B3E] text-white p-8 md:p-12 rounded-2xl border border-[#191970] relative space-y-8 shadow-2xl">
+          <div className="font-mono text-xs text-emerald-400 font-bold uppercase tracking-widest">
+            FOUNDER PROFILE // LEADERSHIP
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div className="lg:col-span-5">
+              <div className="relative border-2 border-white/20 rounded-lg overflow-hidden bg-black shadow-xl">
+                <img
+                  src="/assets/founder-anas.jpg"
+                  alt="Muhammad Anas — Founder & Creative Director"
+                  className="w-full h-80 object-cover filter contrast-110 hover:contrast-125 transition-all duration-500"
+                />
+                <div className="absolute bottom-0 inset-x-0 bg-black/80 backdrop-blur-md text-white p-3 font-mono text-[11px] uppercase tracking-widest flex justify-between">
+                  <span>M. ANAS</span>
+                  <span className="text-emerald-400 font-bold">FOUNDER</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="lg:col-span-7 space-y-4">
+              <h2 className="font-display text-3xl md:text-4xl uppercase tracking-tight text-white">
+                MUHAMMAD ANAS
+              </h2>
+              <p className="font-mono text-xs text-emerald-400 font-bold uppercase tracking-widest">
+                FOUNDER &amp; CREATIVE DIRECTOR
+              </p>
+
+              <p className="font-sans text-sm md:text-base text-white/85 leading-relaxed">
+                "We founded Lumé Media to give emerging brands access to high-impact production values without bloated enterprise costs. Our philosophy is simple: cut the noise, shoot with intention, and build brand identity that commands attention."
+              </p>
+
+              <div className="pt-4 border-t border-white/10 font-mono text-xs text-white/60">
+                LAHORE, PAKISTAN // DIRECT CONTACT VIA WHATSAPP
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="px-4 md:px-12 py-12 max-w-5xl mx-auto text-center">
+        <Link
+          to="/start"
+          className="inline-block bg-[#191970] text-white font-mono text-xs font-bold uppercase tracking-widest px-8 py-4 hover:bg-[#0D1B3E] transition-all rounded shadow-md"
+        >
+          START A PROJECT WITH US →
+        </Link>
+      </section>
+    </main>
   );
 }
+

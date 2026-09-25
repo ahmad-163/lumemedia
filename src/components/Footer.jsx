@@ -1,9 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowUp, MessageCircle, Mail, Instagram } from 'lucide-react';
-const logoCream = '/assets/logo-cream.png';
-
-const WHATSAPP_LINK = "https://wa.me/923707165674?text=Hi%20Lum%C3%A9%20Media%2C%20I%27d%20like%20to%20start%20a%20project.";
 
 export default function Footer() {
   const scrollToTop = () => {
@@ -13,134 +9,150 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-navy-950 text-cream-50 border-t border-navy-600/80 pt-16 pb-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-16">
-          {/* Col 1: Navigation */}
-          <div className="space-y-4">
-            <h4 className="text-xs font-bold tracking-[0.14em] uppercase text-amber">
-              Navigation
+    <footer className="bg-[#F1F4F8] pt-12 pb-8 px-4 md:px-12 relative overflow-hidden">
+      {/* Footer Main Container Card */}
+      <div className="max-w-7xl mx-auto bg-[#0D1B3E] text-white rounded-2xl p-8 md:p-14 shadow-2xl relative overflow-hidden border border-[#191970]/30">
+        
+        {/* Subtle decorative glow */}
+        <div className="absolute top-0 right-0 w-96 h-96 bg-[#191970]/40 rounded-full blur-3xl pointer-events-none" />
+
+        {/* Top CTA Banner */}
+        <div className="pb-12 mb-12 border-b border-white/10 flex flex-col md:flex-row items-start md:items-center justify-between gap-8 relative z-10">
+          <div className="max-w-2xl space-y-3">
+            <div className="inline-flex items-center gap-2 font-mono text-xs font-bold text-[#F1F4F8] tracking-widest uppercase bg-[#191970] px-3 py-1 rounded">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+              <span>ACCEPTING NEW BRANDS FOR THIS QUARTER</span>
+            </div>
+            <h2 className="font-display text-3xl sm:text-5xl uppercase tracking-tight text-white leading-tight">
+              READY TO ELEVATE YOUR BRAND PRESENCE?
+            </h2>
+            <p className="font-sans text-sm md:text-base text-white/70">
+              Let's turn your vision into high-impact media, motion graphics, and content strategy that commands attention.
+            </p>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-4">
+            <Link
+              to="/start"
+              className="bg-[#191970] text-white font-mono text-xs md:text-sm font-bold uppercase tracking-wider px-8 py-4 hover:bg-[#2525A8] transition-all rounded shadow-lg"
+            >
+              START A PROJECT →
+            </Link>
+            <a
+              href="https://wa.me/923707165674"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="border border-white/30 text-white font-mono text-xs md:text-sm font-bold uppercase tracking-wider px-6 py-4 hover:bg-white/10 transition-all rounded"
+            >
+              WHATSAPP US
+            </a>
+          </div>
+        </div>
+
+        {/* Main 4-Column Footer Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-white/10 relative z-10">
+          {/* Column 1: Brand Info */}
+          <div className="lg:col-span-4 space-y-5">
+            <Link to="/" className="inline-block">
+              <img
+                src="/assets/logo-cream.png"
+                alt="Lumé Media"
+                className="h-8 w-auto object-contain"
+              />
+            </Link>
+            <p className="font-sans text-sm text-white/75 leading-relaxed max-w-sm">
+              Lumé Media delivers premium, purpose-driven video editing, motion design, and digital marketing that empowers startups with clarity, confidence, and creative direction.
+            </p>
+            <div className="flex flex-wrap gap-2 pt-2 font-mono text-[11px] text-white/70">
+              <span className="px-2.5 py-1 bg-white/5 border border-white/10 rounded">LAHORE (HQ)</span>
+              <span className="px-2.5 py-1 bg-white/5 border border-white/10 rounded">DUBAI & GULF REACH</span>
+            </div>
+          </div>
+
+          {/* Column 2: Navigation Links */}
+          <div className="lg:col-span-2 space-y-4">
+            <h4 className="font-mono text-xs text-[#F1F4F8] font-bold uppercase tracking-widest text-white/50">
+              NAVIGATION
             </h4>
-            <ul className="space-y-2.5 text-sm text-cream-200/80">
+            <ul className="space-y-2.5 font-mono text-xs">
               <li>
-                <a href="#work" className="hover:text-amber transition-colors">Selected Work</a>
+                <Link to="/" className="text-white/80 hover:text-white transition-colors">HOME</Link>
               </li>
               <li>
-                <a href="#services" className="hover:text-amber transition-colors">Services</a>
+                <Link to="/work" className="text-white/80 hover:text-white transition-colors">SELECTED WORK</Link>
               </li>
               <li>
-                <Link to="/about/story" className="hover:text-amber transition-colors">Our Story</Link>
+                <Link to="/services" className="text-white/80 hover:text-white transition-colors">CAPABILITIES</Link>
               </li>
               <li>
-                <Link to="/about/founders" className="hover:text-amber transition-colors">Founders & Philosophy</Link>
+                <Link to="/about" className="text-white/80 hover:text-white transition-colors">ABOUT & MANIFESTO</Link>
+              </li>
+              <li>
+                <Link to="/start" className="text-emerald-400 font-bold hover:underline">START A PROJECT →</Link>
               </li>
             </ul>
           </div>
 
-          {/* Col 2: Services */}
-          <div className="space-y-4">
-            <h4 className="text-xs font-bold tracking-[0.14em] uppercase text-amber">
-              Services
+          {/* Column 3: Services */}
+          <div className="lg:col-span-3 space-y-4">
+            <h4 className="font-mono text-xs text-[#F1F4F8] font-bold uppercase tracking-widest text-white/50">
+              CORE CAPABILITIES
             </h4>
-            <ul className="space-y-2 text-xs text-cream-200/70">
-              <li><a href="#services" className="hover:text-amber transition-colors">01. Branding & Logo Design</a></li>
-              <li><a href="#services" className="hover:text-amber transition-colors">02. Social Media Management</a></li>
-              <li><a href="#services" className="hover:text-amber transition-colors">03. Content Strategy & Creation</a></li>
-              <li><a href="#services" className="hover:text-amber transition-colors">04. Graphic Design & Brand Visuals</a></li>
-              <li><a href="#services" className="hover:text-amber transition-colors">05. Video Editing & Motion Graphics</a></li>
-              <li><a href="#services" className="hover:text-amber transition-colors">06. SEO (Search Optimization)</a></li>
-              <li><a href="#services" className="hover:text-amber transition-colors">07. Paid Advertising Campaigns</a></li>
+            <ul className="space-y-2.5 font-sans text-xs text-white/80">
+              <li>• Video Editing &amp; Post-Production</li>
+              <li>• Motion Graphics &amp; 3D Visuals</li>
+              <li>• Brand Identity &amp; Creative Strategy</li>
+              <li>• Social Media Growth Retainers</li>
+              <li>• Non-Profit Campaign Storytelling</li>
             </ul>
           </div>
 
-          {/* Col 3: Impact & Reach */}
-          <div className="space-y-4">
-            <h4 className="text-xs font-bold tracking-[0.14em] uppercase text-amber">
-              Impact & Reach
+          {/* Column 4: Direct Contact & Socials */}
+          <div className="lg:col-span-3 space-y-4">
+            <h4 className="font-mono text-xs text-[#F1F4F8] font-bold uppercase tracking-widest text-white/50">
+              GET IN TOUCH
             </h4>
-            <ul className="space-y-2.5 text-xs text-cream-200/80 leading-relaxed">
-              <li>
-                <strong className="text-cream-50 font-medium">Community Partner:</strong> Al Khidmat Foundation
-              </li>
-              <li>
-                <strong className="text-cream-50 font-medium">Based:</strong> Lahore, Pakistan
-              </li>
-              <li>
-                <strong className="text-cream-50 font-medium">Growth Market:</strong> Gulf & Dubai Region
-              </li>
-              <li>
-                <strong className="text-cream-50 font-medium">Positioning:</strong> Startups & Early-Stage Brands
-              </li>
-            </ul>
-          </div>
-
-          {/* Col 4: Connect */}
-          <div className="space-y-4">
-            <h4 className="text-xs font-bold tracking-[0.14em] uppercase text-amber">
-              Connect
-            </h4>
-            <div className="space-y-3">
-              <a
-                href={WHATSAPP_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-3 text-xs text-cream-50 hover:text-amber transition-colors p-2.5 rounded bg-navy-800 border border-navy-600"
-              >
-                <MessageCircle className="w-4 h-4 text-amber" />
-                <div>
-                  <div className="font-semibold">WhatsApp (Primary)</div>
-                  <div className="text-[11px] text-cream-200/60">+92 370 7165674</div>
-                </div>
-              </a>
-
-              <a
-                href="mailto:itslumemedia@gmail.com"
-                className="flex items-center gap-3 text-xs text-cream-50 hover:text-amber transition-colors p-2.5 rounded bg-navy-800 border border-navy-600"
-              >
-                <Mail className="w-4 h-4 text-amber" />
-                <span className="font-medium">itslumemedia@gmail.com</span>
-              </a>
-
-              <div className="flex items-center gap-3 pt-1">
-                <a
-                  href="https://instagram.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-2 rounded bg-navy-800 text-cream-200 hover:text-amber hover:border-amber border border-navy-600 transition-colors"
-                  aria-label="Instagram"
-                >
-                  <Instagram className="w-4 h-4" />
+            <div className="space-y-3 font-mono text-xs">
+              <div>
+                <span className="text-white/50 block text-[10px]">EMAIL US:</span>
+                <a href="mailto:itslumemedia@gmail.com" className="text-white hover:text-emerald-300 underline">
+                  itslumemedia@gmail.com
                 </a>
+              </div>
+              <div>
+                <span className="text-white/50 block text-[10px]">WHATSAPP DIRECT:</span>
+                <a href="https://wa.me/923707165674" target="_blank" rel="noopener noreferrer" className="text-emerald-400 font-bold hover:underline">
+                  +92 370 7165674
+                </a>
+              </div>
+              <div>
+                <span className="text-white/50 block text-[10px]">RESPONSE TIME:</span>
+                <span className="text-white/80">Same-day reply during PKT working hours</span>
               </div>
             </div>
           </div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-navy-800 pt-8 flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="flex items-center gap-4">
-            <img src={logoCream} alt="Lumé Media" className="h-7 w-auto" />
-            <span className="text-xs tracking-[0.2em] text-cream-200/60 uppercase font-sans">
-              Design. Edit. Market.
-            </span>
+        <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 font-mono text-xs text-white/60 relative z-10">
+          <div>
+            © {currentYear} LUMÉ MEDIA. ALL RIGHTS RESERVED.
           </div>
 
-          <div className="text-xs text-cream-200/60 text-center">
-            © {currentYear} Lumé Media. All rights reserved.
+          <div className="flex items-center gap-6">
+            <span className="tracking-widest uppercase">DESIGN. EDIT. MARKET.</span>
+            <button
+              onClick={scrollToTop}
+              className="w-10 h-10 rounded-full border border-white/30 text-white hover:bg-[#191970] flex items-center justify-center transition-all font-bold"
+              aria-label="Back to top"
+            >
+              ↑
+            </button>
           </div>
-
-          <button
-            onClick={scrollToTop}
-            className="flex items-center gap-2 text-xs text-cream-200 hover:text-amber group transition-colors focus:outline-none"
-            aria-label="Back to top"
-          >
-            <span>Back to top</span>
-            <div className="w-8 h-8 rounded-full border border-amber/60 group-hover:border-amber flex items-center justify-center text-amber group-hover:bg-amber/10 transition-colors">
-              <ArrowUp className="w-4 h-4" />
-            </div>
-          </button>
         </div>
+
       </div>
     </footer>
   );
 }
+

@@ -1,216 +1,150 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { ChevronDown, Menu, X, ArrowUpRight } from 'lucide-react';
-const logoCream = '/assets/logo-cream.png';
-
-const WHATSAPP_LINK = "https://wa.me/923707165674?text=Hi%20Lum%C3%A9%20Media%2C%20I%27d%20like%20to%20start%20a%20project.";
+import { Link, useLocation } from 'react-router-dom';
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
-  const [aboutOpen, setAboutOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
-  const navigate = useNavigate();
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  // Close menus on route change
+  // Close mobile menu on route change
   useEffect(() => {
     setMobileMenuOpen(false);
-    setAboutOpen(false);
-    
-    // Handle hash scroll if navigated with hash
-    if (location.hash) {
-      setTimeout(() => {
-        const id = location.hash.replace('#', '');
-        const element = document.getElementById(id);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }
-      }, 100);
-    } else {
-      window.scrollTo(0, 0);
-    }
   }, [location]);
 
-  const handleNavAnchor = (e, anchorId) => {
-    e.preventDefault();
-    setMobileMenuOpen(false);
-    if (location.pathname === '/') {
-      const element = document.getElementById(anchorId);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
+  // Lock scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
     } else {
-      navigate(`/#${anchorId}`);
+      document.body.style.overflow = 'auto';
     }
-  };
+  }, [mobileMenuOpen]);
+
+  const navLinks = [
+    { label: 'WORK', path: '/work', number: '01' },
+    { label: 'SERVICES', path: '/services', number: '02' },
+    { label: 'ABOUT', path: '/about', number: '03' },
+  ];
 
   return (
-    <>
-      <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled
-            ? 'bg-navy-950/95 backdrop-blur-md border-b border-navy-600 py-3 shadow-lg'
-            : 'bg-navy-950/80 backdrop-blur-sm border-b border-navy-600/40 py-5'
-        }`}
+    <nav className="fixed top-0 left-0 right-0 z-[100] bg-[#F1F4F8]/90 backdrop-blur-md border-b border-[#191970]/15 px-4 md:px-8 py-3.5 flex items-center justify-between transition-all">
+      {/* Brand Logo */}
+      <Link to="/" className="flex items-center gap-3 group">
+        <img
+          src="/lumemedialogo.png"
+          alt="Lumé Media"
+          className="h-8 md:h-12 w-auto object-contain transition-transform group-hover:scale-105"
+        />
+      </Link>
+
+      {/* Desktop Navigation Links */}
+      <div className="hidden md:flex items-center gap-8 font-mono text-xs tracking-widest">
+        {navLinks.map((link) => {
+          const isActive = location.pathname === link.path || (link.path !== '/' && location.pathname.startsWith(link.path));
+          return (
+            <Link
+              key={link.path}
+              to={link.path}
+              className={`transition-colors py-1 flex items-center gap-1.5 font-medium ${
+                isActive ? 'text-[#191970] font-bold border-b-2 border-[#191970]' : 'text-[#101828]/80 hover:text-[#191970]'
+              }`}
+            >
+              <span className="text-[#191970]/50 text-[10px]">{link.number}</span>
+              {link.label}
+            </Link>
+          );
+        })}
+
+        {/* Start a Project CTA Button */}
+        <Link
+          to="/start"
+          className="bg-[#191970] text-white font-mono text-xs font-bold uppercase tracking-wider px-6 py-2.5 hover:bg-[#0D1B3E] transition-all shadow-md active:translate-x-0.5 active:translate-y-0.5 rounded-sm"
+        >
+          START A PROJECT →
+        </Link>
+      </div>
+
+      {/* Mobile Hamburger / Close Button */}
+      <button
+        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+        className="md:hidden flex flex-col justify-center items-center w-10 h-10 border border-[#191970]/20 text-[#101828] font-mono text-xs tracking-widest focus:outline-none bg-white rounded-sm"
+        aria-label="Toggle Navigation Menu"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-          {/* Logo */}
-          <Link to="/" className="flex items-center gap-3 group focus:outline-none">
-            <img
-              src={logoCream}
-              alt="Lumé Media Logo"
-              className="h-9 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
-            />
-          </Link>
-
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8 text-sm font-medium tracking-[0.14em] uppercase">
-            <a
-              href="#work"
-              onClick={(e) => handleNavAnchor(e, 'work')}
-              className="text-cream-200 hover:text-amber transition-colors relative py-1 after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:bg-amber after:scale-x-0 hover:after:scale-x-100 after:transition-transform"
-            >
-              Work
-            </a>
-
-            <a
-              href="#services"
-              onClick={(e) => handleNavAnchor(e, 'services')}
-              className="text-cream-200 hover:text-amber transition-colors relative py-1 after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:bg-amber after:scale-x-0 hover:after:scale-x-100 after:transition-transform"
-            >
-              Services
-            </a>
-
-            {/* About Dropdown */}
-            <div
-              className="relative"
-              onMouseEnter={() => setAboutOpen(true)}
-              onMouseLeave={() => setAboutOpen(false)}
-            >
-              <button
-                onClick={() => setAboutOpen(!aboutOpen)}
-                className="flex items-center gap-1.5 text-cream-200 hover:text-amber transition-colors py-1 focus:outline-none"
-              >
-                <span>About</span>
-                <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${aboutOpen ? 'rotate-180 text-amber' : ''}`} />
-              </button>
-
-              {aboutOpen && (
-                <div className="absolute top-full left-0 mt-2 w-48 bg-navy-800 border border-navy-600 rounded-md shadow-xl py-2 z-50 animate-in fade-in slide-in-from-top-2 duration-200">
-                  <Link
-                    to="/about/story"
-                    className="block px-4 py-2.5 text-xs text-cream-200 hover:bg-navy-600/50 hover:text-amber transition-colors"
-                  >
-                    Our Story →
-                  </Link>
-                  <Link
-                    to="/about/founders"
-                    className="block px-4 py-2.5 text-xs text-cream-200 hover:bg-navy-600/50 hover:text-amber transition-colors"
-                  >
-                    Founders →
-                  </Link>
-                </div>
-              )}
-            </div>
-          </nav>
-
-          {/* Desktop Right CTA */}
-          <div className="hidden md:flex items-center">
-            <a
-              href={WHATSAPP_LINK}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-2.5 bg-amber hover:bg-amber-dim text-navy-950 font-semibold text-xs tracking-[0.14em] uppercase rounded transition-all duration-300 shadow-md hover:shadow-amber/20 transform hover:-translate-y-0.5"
-            >
-              <span>Start a Project</span>
-              <ArrowUpRight className="w-4 h-4" />
-            </a>
+        {mobileMenuOpen ? (
+          <span className="text-[#191970] font-bold text-base">✕</span>
+        ) : (
+          <div className="flex flex-col gap-1 w-5">
+            <span className="h-0.5 bg-[#101828] w-full" />
+            <span className="h-0.5 bg-[#191970] w-full" />
+            <span className="h-0.5 bg-[#101828] w-full" />
           </div>
+        )}
+      </button>
 
-          {/* Mobile Hamburger Button */}
-          <div className="flex md:hidden items-center gap-3">
-            <a
-              href={WHATSAPP_LINK}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-3.5 py-1.5 bg-amber text-navy-950 font-bold text-xs tracking-wider uppercase rounded"
-            >
-              Start
-            </a>
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 text-cream-50 hover:text-amber focus:outline-none"
-              aria-label="Toggle menu"
-            >
-              {mobileMenuOpen ? <X className="w-7 h-7" /> : <Menu className="w-7 h-7" />}
-            </button>
-          </div>
-        </div>
-      </header>
-
-      {/* Mobile Menu Overlay */}
+      {/* Full-Screen Mobile Overlay */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 z-40 bg-navy-950 pt-24 px-6 pb-12 flex flex-col justify-between md:hidden animate-in fade-in duration-300">
-          <div className="flex flex-col space-y-6">
-            <a
-              href="#work"
-              onClick={(e) => handleNavAnchor(e, 'work')}
-              className="font-display text-3xl font-bold text-cream-50 hover:text-amber transition-colors border-b border-navy-800 pb-3"
-            >
-              Work
-            </a>
-            <a
-              href="#services"
-              onClick={(e) => handleNavAnchor(e, 'services')}
-              className="font-display text-3xl font-bold text-cream-50 hover:text-amber transition-colors border-b border-navy-800 pb-3"
-            >
-              Services
-            </a>
-            <div className="space-y-4 border-b border-navy-800 pb-4">
-              <span className="text-xs font-semibold tracking-[0.14em] text-amber uppercase">About Lumé</span>
+        <div className="fixed inset-0 top-[60px] z-[99] bg-[#F1F4F8] flex flex-col justify-between p-6 md:hidden overflow-y-auto border-t border-[#191970]/20">
+          <div className="space-y-6">
+            <div className="font-mono text-xs text-[#191970] tracking-widest uppercase pb-3 border-b border-[#191970]/20 flex justify-between items-center font-bold">
+              <span>LUMÉ MEDIA DIRECTORY</span>
+              <span className="animate-pulse">● ONLINE</span>
+            </div>
+
+            <div className="flex flex-col space-y-4">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  className="group border-b border-[#191970]/10 pb-4 flex justify-between items-end hover:text-[#191970] transition-colors"
+                >
+                  <div className="flex items-baseline gap-3">
+                    <span className="font-mono text-xs text-[#191970] font-bold">{link.number}</span>
+                    <span className="font-display text-2xl tracking-tighter uppercase text-[#101828] group-hover:text-[#191970]">
+                      {link.label}
+                    </span>
+                  </div>
+                  <span className="font-mono text-xs text-[#101828]/40">{link.path}</span>
+                </Link>
+              ))}
+
               <Link
-                to="/about/story"
-                className="block font-display text-2xl font-bold text-cream-200 hover:text-amber pl-3"
+                to="/start"
+                className="group border-b border-[#191970]/10 pb-4 flex justify-between items-end"
               >
-                Our Story →
-              </Link>
-              <Link
-                to="/about/founders"
-                className="block font-display text-2xl font-bold text-cream-200 hover:text-amber pl-3"
-              >
-                Founders & Philosophy →
+                <div className="flex items-baseline gap-3">
+                  <span className="font-mono text-xs text-[#191970] font-bold">04</span>
+                  <span className="font-display text-2xl tracking-tighter uppercase text-[#191970]">
+                    START A PROJECT
+                  </span>
+                </div>
+                <span className="font-mono text-xs text-[#191970]">/start →</span>
               </Link>
             </div>
           </div>
 
-          <div className="space-y-4">
-            <a
-              href={WHATSAPP_LINK}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full flex items-center justify-center gap-2 py-4 bg-amber text-navy-950 font-bold text-sm tracking-[0.14em] uppercase rounded shadow-lg"
-            >
-              <span>Start a Project</span>
-              <ArrowUpRight className="w-5 h-5" />
-            </a>
-            <p className="text-center text-xs text-cream-200/60">
-              Same-day reply during working hours
-            </p>
+          <div className="pt-8 border-t border-[#191970]/20 space-y-3 font-mono text-xs text-[#101828]/70">
+            <div className="flex justify-between">
+              <span>PRODUCED BY:</span>
+              <span className="text-[#101828] font-semibold">LUMÉ MEDIA STUDIO</span>
+            </div>
+            <div className="flex justify-between">
+              <span>LOCATIONS:</span>
+              <span className="text-[#101828] font-semibold">LAHORE / DUBAI & GULF</span>
+            </div>
+            <div className="flex justify-between">
+              <span>CONTACT:</span>
+              <a
+                href="https://wa.me/923707165674"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#191970] underline font-bold"
+              >
+                WHATSAPP →
+              </a>
+            </div>
           </div>
         </div>
       )}
-    </>
+    </nav>
   );
 }
+

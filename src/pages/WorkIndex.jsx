@@ -1,106 +1,156 @@
 import React, { useState } from 'react';
-import SectionHeading from '../components/SectionHeading';
-import ProjectCard from '../components/ProjectCard';
+import { Link } from 'react-router-dom';
 import { clients } from '../data/clients';
-import { X, CheckCircle2, MessageCircle } from 'lucide-react';
-
-const WHATSAPP_LINK = "https://wa.me/923707165674?text=Hi%20Lum%C3%A9%20Media%2C%20I%27d%20like%20to%20start%20a%20project.";
+import SlateLabel from '../components/SlateLabel';
 
 export default function WorkIndex() {
-  const [selectedClientModal, setSelectedClientModal] = useState(null);
+  const [activeModal, setActiveModal] = useState(null);
 
   return (
-    <div className="pt-32 pb-24 bg-navy-950 text-cream-50 min-h-screen">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionHeading
-          eyebrow="CLIENT PORTFOLIO INDEX"
-          headline="Selected Work & Client Relationships."
-          subhead="From sports facilities to travel consultancies and social impact initiatives — exploring how Lumé Media transforms ideas into market presence."
-        />
+    <main className="min-h-screen bg-[#F1F4F8] text-[#101828] pt-20 pb-24">
+      {/* Header Section */}
+      <section className="px-4 md:px-12 py-12 border-b border-[#191970]/15 max-w-7xl mx-auto">
+        <SlateLabel scene="WORK" roll="INDEX" take="05" label="SHOT LOG" />
+        <h1 className="font-display text-4xl sm:text-6xl md:text-7xl uppercase tracking-tighter text-[#101828] mt-6">
+          SELECTED <span className="text-[#191970]">WORK &amp; SHOTS</span>
+        </h1>
+        <p className="font-sans text-base md:text-lg text-[#101828]/75 max-w-2xl mt-4">
+          A production log of brand partnerships across sports facilities, luxury travel consultancies, F&amp;B rebrands, social impact advocacy, and tech retail.
+        </p>
+      </section>
 
-        {/* All 5 Client Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          {clients.map((client) => (
-            <ProjectCard
+      {/* Shot Log Call Sheet Index Rows */}
+      <section className="w-full">
+        {clients.map((client, index) => {
+          return (
+            <div
               key={client.id}
-              client={client}
-              onOpenModal={(c) => setSelectedClientModal(c)}
-            />
-          ))}
-        </div>
-      </div>
-
-      {/* Copy-Only Modal for Non-Detail Clients (Empower Through Literacy / iPhoners) */}
-      {selectedClientModal && (
-        <div className="fixed inset-0 z-50 bg-navy-950/80 backdrop-blur-md flex items-center justify-center p-4 animate-in fade-in duration-200">
-          <div className="bg-navy-800 border-2 border-amber/40 rounded-2xl max-w-xl w-full p-6 sm:p-8 relative shadow-2xl space-y-6">
-            <button
-              onClick={() => setSelectedClientModal(null)}
-              className="absolute top-4 right-4 p-2 rounded-full bg-navy-950 text-cream-200 hover:text-amber transition-colors"
-              aria-label="Close modal"
+              className="w-full border-b border-[#191970]/15 transition-colors py-12 px-4 md:px-12 bg-white text-[#101828] hover:bg-[#F1F4F8]/50"
             >
-              <X className="w-5 h-5" />
+              <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                {/* Number & Name */}
+                <div className="lg:col-span-6 space-y-3">
+                  <div className="font-mono text-xs uppercase tracking-widest flex items-center gap-2 opacity-80">
+                    <span className="text-[#191970] font-bold">SHOT 0{index + 1}</span>
+                    <span>|</span>
+                    <span className="font-semibold">{client.category}</span>
+                  </div>
+
+                  <h2 className="font-display text-3xl sm:text-5xl uppercase tracking-tight text-[#101828]">
+                    {client.name}
+                  </h2>
+
+                  <div className="font-mono text-xs uppercase tracking-wider text-[#191970] font-bold pt-1">
+                    SCOPE: {client.scope}
+                  </div>
+
+                  <p className="font-sans text-sm leading-relaxed max-w-xl text-[#101828]/80 pt-1">
+                    {client.description}
+                  </p>
+
+                  {/* Scope Chips */}
+                  <div className="flex flex-wrap gap-2 pt-4">
+                    {client.scopeChips.map((chip, cIdx) => (
+                      <span
+                        key={cIdx}
+                        className="font-mono text-[11px] px-2.5 py-1 border border-[#191970]/20 bg-[#F1F4F8] text-[#191970] font-semibold rounded"
+                      >
+                        {chip}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Action CTA */}
+                  <div className="pt-6">
+                    {client.hasFullCaseStudy ? (
+                      <Link
+                        to={`/work/${client.slug}`}
+                        className="inline-block font-mono text-xs font-bold uppercase tracking-widest px-6 py-3.5 bg-[#191970] text-white hover:bg-[#0D1B3E] transition-all rounded shadow-sm"
+                      >
+                        VIEW CASE STUDY →
+                      </Link>
+                    ) : (
+                      <button
+                        onClick={() => setActiveModal(client)}
+                        className="inline-block font-mono text-xs font-bold uppercase tracking-widest px-6 py-3.5 border border-[#191970] text-[#191970] hover:bg-[#191970] hover:text-white transition-all rounded"
+                      >
+                        VIEW BRIEF →
+                      </button>
+                    )}
+                  </div>
+                </div>
+
+                {/* Supporting Image Crop */}
+                <div className="lg:col-span-6">
+                  <div className="relative h-64 sm:h-80 w-full overflow-hidden border border-[#191970]/20 bg-[#0D1B3E] rounded-xl group shadow-md">
+                    <img
+                      src={client.gallery[0] || client.logo}
+                      alt={client.name}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute top-3 left-3 bg-[#191970] text-white font-mono text-[10px] px-2.5 py-1 uppercase tracking-widest rounded font-bold">
+                      FRAME PREVIEW
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </section>
+
+      {/* Lightweight Modal for non-case-study clients */}
+      {activeModal && (
+        <div className="fixed inset-0 z-[999] bg-[#101828]/80 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="bg-white rounded-2xl border-2 border-[#191970] max-w-2xl w-full p-6 md:p-8 space-y-6 relative text-[#101828] shadow-2xl">
+            <button
+              onClick={() => setActiveModal(null)}
+              className="absolute top-4 right-4 font-mono text-xs text-[#191970] font-bold border border-[#191970] px-3 py-1 rounded hover:bg-[#191970] hover:text-white"
+            >
+              CLOSE [ESC]
             </button>
 
-            <div className="flex items-center gap-3 border-b border-navy-600 pb-4">
-              {selectedClientModal.logo && (
+            <div className="font-mono text-xs text-[#191970] uppercase tracking-widest font-bold">
+              PRODUCTION BRIEF // {activeModal.category}
+            </div>
+
+            <h3 className="font-display text-3xl uppercase tracking-tight text-[#101828]">
+              {activeModal.name}
+            </h3>
+
+            <div className="font-mono text-xs text-[#101828]/60 uppercase font-semibold">
+              SCOPE: {activeModal.scope}
+            </div>
+
+            <p className="font-sans text-sm text-[#101828]/80 leading-relaxed">
+              {activeModal.clientOverview}
+            </p>
+
+            <div className="grid grid-cols-2 gap-4 pt-4 border-t border-[#191970]/15">
+              {activeModal.gallery.slice(0, 2).map((img, idx) => (
                 <img
-                  src={selectedClientModal.logo}
-                  alt={selectedClientModal.name}
-                  className="h-8 w-auto object-contain"
+                  key={idx}
+                  src={img}
+                  alt={activeModal.name}
+                  className="w-full h-40 object-cover border border-[#191970]/20 rounded"
                 />
-              )}
-              <div>
-                <h3 className="font-display text-2xl font-bold text-cream-50">
-                  {selectedClientModal.name}
-                </h3>
-                <span className="text-xs font-semibold uppercase tracking-wider text-amber">
-                  {selectedClientModal.category}
-                </span>
-              </div>
+              ))}
             </div>
 
-            <div className="space-y-4 text-sm text-cream-200/90 leading-relaxed">
-              <p className="italic font-serif text-base text-cream-50">
-                "{selectedClientModal.description}"
-              </p>
-              <p>{selectedClientModal.clientOverview}</p>
-            </div>
-
-            <div>
-              <h4 className="text-xs font-bold uppercase tracking-[0.14em] text-amber mb-3">
-                Scope of Work Delivered
-              </h4>
-              <div className="flex flex-wrap gap-2">
-                {selectedClientModal.scopeChips?.map((chip, idx) => (
-                  <span
-                    key={idx}
-                    className="inline-flex items-center gap-1.5 text-xs px-3 py-1.5 rounded bg-navy-950 border border-navy-600 text-cream-50"
-                  >
-                    <CheckCircle2 className="w-3.5 h-3.5 text-amber" />
-                    <span>{chip}</span>
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            <div className="pt-4 border-t border-navy-600 flex flex-col sm:flex-row items-center justify-between gap-4">
-              <span className="text-xs text-cream-200/60">
-                Dedicated case study page coming soon
-              </span>
-              <a
-                href={WHATSAPP_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-amber text-navy-950 font-bold text-xs tracking-wider uppercase rounded shadow-md"
+            <div className="pt-4 border-t border-[#191970]/15 flex justify-between items-center font-mono text-xs">
+              <span className="text-[#101828]/60">INDEX STATUS: ACTIVE CARD</span>
+              <Link
+                to="/start"
+                onClick={() => setActiveModal(null)}
+                className="text-[#191970] hover:underline font-bold"
               >
-                <MessageCircle className="w-4 h-4" />
-                <span>Inquire About Similar Work</span>
-              </a>
+                REQUEST SIMILAR CAMPAIGN →
+              </Link>
             </div>
           </div>
         </div>
       )}
-    </div>
+    </main>
   );
 }
+
